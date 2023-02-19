@@ -1,0 +1,42 @@
+<!-- https://openweathermap.org/ -->
+
+<!--https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}-->
+
+<!--https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}-->
+
+<!--https://api.openweathermap.org/data/2.5/weather?q={city name},{country code}&appid={API key}-->
+
+<!--https://api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}-->
+
+<!--https://api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button id='btn' onclick="fetchWeather()">Fetch Weather</button>
+    </div>
+
+    <script>
+
+            const fetchWeather = async () => {
+        try {
+            const res = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Seattle&appid=ff005e56ab21ac520b34b5feac6dcf7c')
+            const data = await res.json()
+            console.log('Weather data', data)
+         } catch (error) {
+            console.error('error', error)
+         }
+    }
+
+    fetchWeather()
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //File example
+        // const loadFile = async () => {
+        //     try {
+        //     const data = await fs.promises.readFile('./test.txt', {
+        //         encoding: 'utf-8',
+        //     });
+        //     console.log(data);
+        //     } catch(error) {
+        //         console.error(error);
+        //     }
+        // };
+        // loadFile();
+
+        //API example
+        const fetchPokemon = async (id) => {
+            try {
+            const res = await fetch('https://pokeapi.co/api/v2/pokemon/${id}');
+            const data = await res.json();
+            console.log(data);
+            } catch(err){
+                console.error(err);
+            }
+        };
+        fetchPokemon(2);
+    </script>
+</body>
+</html>
+

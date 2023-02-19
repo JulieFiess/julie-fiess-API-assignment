@@ -1,0 +1,41 @@
+<!-- https://superheroapi.com/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button id='btn' onclick="getSuperhero()">Get Superhero</button>
+        <!--<button id='btn' onclick="getSuperheroBiography()">Get Superhero Biography</button>-->
+    </div>
+    <script>
+        //const baseUrl = 'https://superheroapi.com/api/509694924675238/';
+
+        const getSuperhero = async () => {
+            try {
+                const res = await fetch('https://superheroapi.com/api/509694924675238/1/biography')
+                const data = await res.json()
+
+                // data.forEach((element) => {
+                // const img = document.createElement('img');
+    
+                // img.src = element.url;
+    
+                // document.getElementById('body').appendChild(img);
+                // });
+
+                console.log('Superhero data', data)
+            } catch (error) {
+                console.error('error', error)
+            }
+        }
+
+        getSuperhero()
+
+    </script>
+</body>
+</html>

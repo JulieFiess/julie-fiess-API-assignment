@@ -1,0 +1,39 @@
+<!-- https://zenquotes.io/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="body">
+        <button id='btn' onclick="getQuote()">Get Zen Quotes</button>
+    </div>
+    <script>
+        const fetchQuotes = async () => {
+            try {
+                const res = await fetch('https://zenquotes.io/api/random/')
+                const data = await res.json()
+
+                // data.forEach((element) => {
+                // const img = document.createElement('img');
+    
+                // img.src = element.url;
+    
+                // document.getElementById('body').appendChild(img);
+                // });
+  
+
+                console.log('async-await data', data)
+            } catch (error) {
+                console.error('error', error)
+            }
+        }
+
+        fetchQuotes()
+
+    </script>
+</body>
+</html>

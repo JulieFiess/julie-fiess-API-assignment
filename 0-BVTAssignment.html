@@ -1,0 +1,91 @@
+<!--
+For this project, you simply need to make a small JavaScript project that makes an HTTP request to one of these APIs and shows the data in some way, whether it is text or images, or anything else. Try to style the content a little so that it's easy to look at, but CSS isn't the focus for this project so it doesn't have to look too fancy. I will attach the fetch code example that I created last week so that you can reference it. You are not allowed to use the same cat API as the example for your own project :).
+
+
+You may use other APIs besides the ones that I have listed here, but I picked these specifically because they look relatively easy to get started with and they look like they have decent documentation, so pick other ones at your own risk.
+
+https://superheroapi.com/
+https://openweathermap.org/
+https://zenquotes.io/
+https://opentdb.com/api_config.php
+https://newsapi.ai/?gclid=Cj0KCQjw94WZBhDtARIsAKxWG-8NvJrqrHHtU5aXXJ4C7caknmUDxPi1gN0H42Ts0cAN1LDmKfGXol0aAs_IEALw_wcB#
+https://unsplash.com/developers
+
+
+Cat API example: https://discord.com/channels/689330232741986314/955975399588904990/1019059504790388787
+
+
+How to get started:
+
+1. Read the documentation and found out if you need a authentication token/key and how to get it
+     a. Read through the docs to find out how they want you to use the token if there is one
+2. Find the base URL and endpoint(s) that you want to use to get your data
+3. Create your `fetch` request using the URL and the API token as the documentation tells you
+4. Use document DOM methods like `appendChild` and/or `createElement` to display your data on the page. You can do this either on page load or a button click, or any other trigger you want to use
+5. Add a little styling to make it easy to look at if it needs it
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="body">
+    <button id='btn' onclick="getCatBreeds()">Get cat breeds</button>
+    <button id='btn' onclick="getCatPictures()">Get cat pictures</button>
+</body>
+    <script>
+      const baseUrl = 'https://api.thecatapi.com/v1';
+
+      const getCatBreeds = async () => {
+        try {
+          const response = await fetch(`${baseUrl}breeds`, {
+            method: 'GET',
+            headers: {
+              'x-api-key': 'live_m26JVdagCCi5UrWg03hkiyGdkF5vg9UQOJIPLAM8R9QTCGKfEXYZ9tzzU70dcgdm'
+            }
+          });
+          console.log('response', response);
+  
+          const catBreeds = await response.json();
+  
+          console.log('catBreeds', catBreeds);
+        } catch (err) {
+          console.error('Error in getCatBreeds', err);
+        }
+      }
+
+      const getCatPictures = async () => {
+        try {
+          const response = await fetch(`${baseUrl}/images/search?limit=5`, {
+            method: 'GET',
+            headers: {
+              'x-api-key': 'live_m26JVdagCCi5UrWg03hkiyGdkF5vg9UQOJIPLAM8R9QTCGKfEXYZ9tzzU70dcgdm'
+            }
+          });
+          console.log('response', response);
+  
+          const catPictures = await response.json();
+  
+          catPictures.forEach((element) => {
+            const img = document.createElement('img');
+  
+            img.src = element.url;
+  
+            document.getElementById('body').appendChild(img);
+          });
+  
+          console.log('catPictures', catPictures);
+        } catch (err) {
+          console.error('Error in getCatPictures', err);
+        }
+      }
+    </script>
+</html>
+<!-- images/search?limit=20 -->
+<!-- https://api.thecatapi.com/v1/images/search -->
+<!-- https://api.thecatapi.com/v1/breeds -->
+<!-- live_m26JVdagCCi5UrWg03hkiyGdkF5vg9UQOJIPLAM8R9QTCGKfEXYZ9tzzU70dcgdm -->

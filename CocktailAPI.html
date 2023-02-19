@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn" onClick="getRandomCocktail()">Get Random Cocktail Recipe</button>
+</body>
+    <script>
+        //Connor's way of writing
+        const getRandomCocktail = async () => {
+        try {
+          const response = await fetch('www.thecocktaildb.com/api/json/v1/1/random.php', {
+            method: 'GET',
+            headers: {
+              'x-api-key': '1'
+            }
+          });
+          console.log('response', response);
+  
+          const cocktails = await response.json();
+  
+          console.log('cocktails', cocktails);
+        } catch (err) {
+          console.error('Error in getRandomCocktail', err);
+        }
+      }
+
+        // James Q Quick's YouTube way of writing
+        // const getRandomCocktail = async () => {
+        //     try {
+        //     const res = await fetch('www.thecocktaildb.com/api/json/v1/1/random.php');
+        //     const data = await res.json();
+        //     console.log(data);
+        //     } catch(err){
+        //         console.error(err);
+        //     }
+        // };
+        // getRandomCocktail();
+    </script>
+</html>
+
+<!-- https://apilist.fun/ -->
+<!-- https://apilist.fun/api/the-cocktail-db -->
+<!-- https://www.thecocktaildb.com/api.php?ref=apilist.fun -->
+<!-- www.thecocktaildb.com/api/json/v1/1/random.php -->

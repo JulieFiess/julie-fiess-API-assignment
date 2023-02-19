@@ -1,0 +1,40 @@
+<!--https://www.freecodecamp.org/news/asynchronism-in-javascript/-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //<!--Promises-->
+    // const fetchJoke = () => {
+    //     console.log('fetching...')
+    //     fetch('https://api.chucknorris.io/jokes/random')
+    //         .then(res => res.json())
+    //         .then(resp => console.log('resp', resp))
+    //         .catch(error => console.error('error', error))
+    //         .finally(() => console.log('Promise resolved'))
+    // }
+
+    // fetchJoke()
+
+
+    //<!--Async/Await-->
+    const fetchJoke = async () => {
+        try {
+            const res = await fetch('https://api.chucknorris.io/jokes/random')
+            const data = await res.json()
+            console.log('async-await data', data)
+         } catch (error) {
+            console.error('error', error)
+         }
+    }
+
+    fetchJoke()
+    </script>
+</body>
+</html>
+
